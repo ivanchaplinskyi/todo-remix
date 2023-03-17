@@ -16,7 +16,7 @@ const storage = createCookieSessionStorage({
     secrets: [sessionSecret],
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: 60 * 60 * 24 * 30, // Defines a period of time the cookie is allowed to live before being automatically deleted.
     httpOnly: true,
   },
 });
