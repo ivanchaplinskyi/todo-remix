@@ -118,8 +118,6 @@ export default function Login() {
 
   const stateAction = action === "login" ? "Sign In" : "Sign Up";
 
-  // const handleSubmit = (event: React.FormEvent) => event.preventDefault();
-
   return (
     <Layout>
       <div className="h-full justify-center items-center flex flex-col gap-y-4">

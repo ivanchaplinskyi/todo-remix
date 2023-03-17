@@ -51,3 +51,8 @@ rm -rf app
 # copy your app over
 cp -R ../my-old-remix-app/app app
 ```
+
+### Prisma
+#After making changes to our schema you can run the command:
+
+- `npx prisma db push`
