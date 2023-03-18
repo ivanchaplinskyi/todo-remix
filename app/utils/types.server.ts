@@ -9,3 +9,8 @@ export type LoginForm = {
   email: string;
   password: string;
 };
+
+
+export type TodoItem = {
+  taskName: string;
+}
