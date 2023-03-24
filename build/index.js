@@ -117,7 +117,7 @@ __export(root_exports, {
 var import_react2 = require("@remix-run/react");
 
 // app/styles/app.css
-var app_default = "/build/_assets/app-KRGNQEOM.css";
+var app_default = "/build/_assets/app-WTDW2NK7.css";
 
 // app/root.tsx
 var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), links = () => [{ rel: "stylesheet", href: app_default }], meta = () => ({
@@ -176,12 +176,13 @@ function App() {
   }, this);
 }
 
-// app/routes/index.tsx
-var routes_exports = {};
-__export(routes_exports, {
-  default: () => Index,
+// app/routes/logout.ts
+var logout_exports = {};
+__export(logout_exports, {
+  action: () => action,
   loader: () => loader
 });
+var import_react_router = require("react-router");
 
 // app/utils/prisma.server.ts
 var import_client = require("@prisma/client"), prisma;
@@ -287,33 +288,30 @@ async function logout(request) {
   });
 }
 
-// app/routes/index.tsx
-var import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), loader = async ({ request }) => (await requireUserId(request), null);
-function Index() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "h-screen bg-slate-700 flex justify-center items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("h2", { className: "text-blue-600 font-extrabold text-5xl", children: "TailwindCSS Is Working!" }, void 0, !1, {
-    fileName: "app/routes/index.tsx",
-    lineNumber: 12,
-    columnNumber: 7
-  }, this) }, void 0, !1, {
-    fileName: "app/routes/index.tsx",
-    lineNumber: 11,
-    columnNumber: 5
-  }, this);
-}
+// app/routes/logout.ts
+var action = async ({ request }) => logout(request), loader = async () => (0, import_react_router.redirect)("/");
+
+// app/routes/index.ts
+var routes_exports = {};
+__export(routes_exports, {
+  loader: () => loader2
+});
+var import_node3 = require("@remix-run/node");
+var loader2 = async ({ request }) => (await requireUserId(request), (0, import_node3.redirect)("/home"));
 
 // app/routes/login.tsx
 var login_exports = {};
 __export(login_exports, {
-  action: () => action,
+  action: () => action2,
   default: () => Login,
-  loader: () => loader2
+  loader: () => loader3
 });
 var import_react4 = require("@remix-run/react"), import_react5 = require("react");
 
 // app/components/layout.tsx
-var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
+var import_jsx_dev_runtime3 = require("react/jsx-dev-runtime");
 function Layout({ children }) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "h-screen w-full bg-blue-600 font-mono", children }, void 0, !1, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "h-screen w-full bg-blue-600 font-mono", children }, void 0, !1, {
     fileName: "app/components/layout.tsx",
     lineNumber: 3,
     columnNumber: 5
@@ -321,7 +319,7 @@ function Layout({ children }) {
 }
 
 // app/components/form-field.tsx
-var import_react3 = require("react"), import_jsx_dev_runtime5 = require("react/jsx-dev-runtime");
+var import_react3 = require("react"), import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
 function FormField({
   htmlFor,
   label,
@@ -334,13 +332,13 @@ function FormField({
   let [errorText, setErrorText] = (0, import_react3.useState)(error);
   return (0, import_react3.useEffect)(() => {
     setErrorText(error);
-  }, [error]), /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_jsx_dev_runtime5.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { htmlFor, className: "text-blue-600 font-semibold", children: label }, void 0, !1, {
+  }, [error]), /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_jsx_dev_runtime4.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("label", { htmlFor, className: "text-blue-600 font-semibold", children: label }, void 0, !1, {
       fileName: "app/components/form-field.tsx",
       lineNumber: 27,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
       "input",
       {
         onChange: (e) => {
@@ -361,7 +359,7 @@ function FormField({
       },
       this
     ),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-xs font-semibold text-center tracking-wide text-red-500 w-full", children: errorText || "" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "text-xs font-semibold text-center tracking-wide text-red-500 w-full", children: errorText || "" }, void 0, !1, {
       fileName: "app/components/form-field.tsx",
       lineNumber: 41,
       columnNumber: 7
@@ -374,7 +372,7 @@ function FormField({
 }
 
 // app/routes/login.tsx
-var import_node3 = require("@remix-run/node");
+var import_node4 = require("@remix-run/node");
 
 // app/utils/ validators.server.ts
 var validateEmail = (email) => {
@@ -390,41 +388,41 @@ var validateEmail = (email) => {
 };
 
 // app/routes/login.tsx
-var import_jsx_dev_runtime6 = require("react/jsx-dev-runtime"), loader2 = async ({ request }) => await getUser(request) ? (0, import_node3.redirect)("/") : null, action = async ({ request }) => {
-  let form = await request.formData(), action2 = form.get("_action"), email = form.get("email"), password = form.get("password"), firstName = form.get("firstName"), lastName = form.get("lastName");
-  if (typeof action2 != "string" || typeof email != "string" || typeof password != "string")
-    return (0, import_node3.json)({ error: "Invalid Form Data", form: action2 }, { status: 400 });
-  if (action2 === "register" && (typeof firstName != "string" || typeof lastName != "string"))
-    return (0, import_node3.json)({ error: "Invalid Form Data", form: action2 }, { status: 400 });
+var import_jsx_dev_runtime5 = require("react/jsx-dev-runtime"), loader3 = async ({ request }) => await getUser(request) ? (0, import_node4.redirect)("/") : null, action2 = async ({ request }) => {
+  let form = await request.formData(), action4 = form.get("_action"), email = form.get("email"), password = form.get("password"), firstName = form.get("firstName"), lastName = form.get("lastName");
+  if (typeof action4 != "string" || typeof email != "string" || typeof password != "string")
+    return (0, import_node4.json)({ error: "Invalid Form Data", form: action4 }, { status: 400 });
+  if (action4 === "register" && (typeof firstName != "string" || typeof lastName != "string"))
+    return (0, import_node4.json)({ error: "Invalid Form Data", form: action4 }, { status: 400 });
   let errors = {
     email: validateEmail(email),
     password: validatePassword(password),
-    ...action2 === "register" ? {
+    ...action4 === "register" ? {
       firstName: validateName(firstName || ""),
       lastName: validateName(lastName || "")
     } : {}
   };
   if (Object.values(errors).some(Boolean))
-    return (0, import_node3.json)(
+    return (0, import_node4.json)(
       {
         errors,
         fields: { email, password, firstName, lastName },
-        form: action2
+        form: action4
       },
       { status: 400 }
     );
-  switch (action2) {
+  switch (action4) {
     case "login":
       return await login({ email, password });
     case "register":
       return firstName = firstName, lastName = lastName, await register({ email, password, firstName, lastName });
     default:
-      return (0, import_node3.json)({ error: "Invalid Form Data" }, { status: 400 });
+      return (0, import_node4.json)({ error: "Invalid Form Data" }, { status: 400 });
   }
 };
 function Login() {
   var _a, _b, _c, _d;
-  let [action2, setAction] = (0, import_react5.useState)("login"), actionData = (0, import_react4.useActionData)(), firstLoad = (0, import_react5.useRef)(!0), [errors, setErrors] = (0, import_react5.useState)((actionData == null ? void 0 : actionData.errors) || {}), [formError, setFormError] = (0, import_react5.useState)((actionData == null ? void 0 : actionData.error) || ""), [formData, setFormData] = (0, import_react5.useState)({
+  let [action4, setAction] = (0, import_react5.useState)("login"), actionData = (0, import_react4.useActionData)(), firstLoad = (0, import_react5.useRef)(!0), [errors, setErrors] = (0, import_react5.useState)((actionData == null ? void 0 : actionData.errors) || {}), [formError, setFormError] = (0, import_react5.useState)((actionData == null ? void 0 : actionData.error) || ""), [formData, setFormData] = (0, import_react5.useState)({
     email: ((_a = actionData == null ? void 0 : actionData.fields) == null ? void 0 : _a.email) || "",
     password: ((_b = actionData == null ? void 0 : actionData.fields) == null ? void 0 : _b.password) || "",
     firstName: ((_c = actionData == null ? void 0 : actionData.fields) == null ? void 0 : _c.lastName) || "",
@@ -440,19 +438,19 @@ function Login() {
       };
       setErrors(newState), setFormError(""), setFormData(newState);
     }
-  }, [action2]), (0, import_react5.useEffect)(() => {
+  }, [action4]), (0, import_react5.useEffect)(() => {
     firstLoad.current || setFormError("");
   }, [formData]), (0, import_react5.useEffect)(() => {
     firstLoad.current = !1;
   }, []);
   let handleInputChange = (event, field) => {
     setFormData((form) => ({ ...form, [field]: event.target.value }));
-  }, stateAction = action2 === "login" ? "Sign In" : "Sign Up";
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(Layout, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("div", { className: "h-full justify-center items-center flex flex-col gap-y-4", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+  }, stateAction = action4 === "login" ? "Sign In" : "Sign Up";
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Layout, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "h-full justify-center items-center flex flex-col gap-y-4", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
       "button",
       {
-        onClick: () => setAction(action2 == "login" ? "register" : "login"),
+        onClick: () => setAction(action4 == "login" ? "register" : "login"),
         className: "absolute top-8 right-8 rounded-xl bg-yellow-300 font-semibold text-blue-600 px-3 py-2 transition duration-300 ease-in-out hover:bg-yellow-400 hover:-translate-y-1",
         children: stateAction
       },
@@ -460,28 +458,28 @@ function Login() {
       !1,
       {
         fileName: "app/routes/login.tsx",
-        lineNumber: 126,
+        lineNumber: 124,
         columnNumber: 9
       },
       this
     ),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("h2", { className: "text-5xl font-extrabold text-yellow-300", children: "Todo" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("h2", { className: "text-5xl font-extrabold text-yellow-300", children: "Todo" }, void 0, !1, {
       fileName: "app/routes/login.tsx",
-      lineNumber: 132,
+      lineNumber: 130,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("p", { className: "font-semibold text-slate-300", children: action2 === "login" ? "Login" : "Registration" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("p", { className: "font-semibold text-slate-300", children: action4 === "login" ? "Login" : "Registration" }, void 0, !1, {
       fileName: "app/routes/login.tsx",
-      lineNumber: 133,
+      lineNumber: 131,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("form", { method: "POST", className: "rounded-2xl bg-gray-200 p-6 w-96", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("div", { className: "text-xs font-semibold text-center tracking-wide text-red-500 w-full", children: formError }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("form", { method: "POST", className: "rounded-2xl bg-gray-200 p-6 w-96", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-xs font-semibold text-center tracking-wide text-red-500 w-full", children: formError }, void 0, !1, {
         fileName: "app/routes/login.tsx",
-        lineNumber: 138,
+        lineNumber: 136,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
         FormField,
         {
           htmlFor: "email",
@@ -494,12 +492,12 @@ function Login() {
         !1,
         {
           fileName: "app/routes/login.tsx",
-          lineNumber: 139,
+          lineNumber: 137,
           columnNumber: 11
         },
         this
       ),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
         FormField,
         {
           htmlFor: "password",
@@ -513,13 +511,13 @@ function Login() {
         !1,
         {
           fileName: "app/routes/login.tsx",
-          lineNumber: 146,
+          lineNumber: 144,
           columnNumber: 11
         },
         this
       ),
-      action2 === "register" && /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(import_jsx_dev_runtime6.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+      action4 === "register" && /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_jsx_dev_runtime5.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
           FormField,
           {
             htmlFor: "firstName",
@@ -532,12 +530,12 @@ function Login() {
           !1,
           {
             fileName: "app/routes/login.tsx",
-            lineNumber: 156,
+            lineNumber: 154,
             columnNumber: 15
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
           FormField,
           {
             htmlFor: "lastName",
@@ -550,56 +548,149 @@ function Login() {
           !1,
           {
             fileName: "app/routes/login.tsx",
-            lineNumber: 163,
+            lineNumber: 161,
             columnNumber: 15
           },
           this
         )
       ] }, void 0, !0, {
         fileName: "app/routes/login.tsx",
-        lineNumber: 155,
+        lineNumber: 153,
         columnNumber: 13
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("div", { className: "w-full text-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "w-full text-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
         "button",
         {
           type: "submit",
           className: "rounded-xl mt-2 bg-yellow-300 px-3 py-2 text-blue-600 font-semibold transition duration-300 ease-in-out hover:bg-yellow-400 hover:-translate-y-1",
           name: "_action",
-          value: action2,
+          value: action4,
           children: stateAction
         },
         void 0,
         !1,
         {
           fileName: "app/routes/login.tsx",
-          lineNumber: 173,
+          lineNumber: 171,
           columnNumber: 13
         },
         this
       ) }, void 0, !1, {
         fileName: "app/routes/login.tsx",
-        lineNumber: 172,
+        lineNumber: 170,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/login.tsx",
-      lineNumber: 137,
+      lineNumber: 135,
       columnNumber: 9
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/login.tsx",
-    lineNumber: 125,
+    lineNumber: 123,
     columnNumber: 7
   }, this) }, void 0, !1, {
     fileName: "app/routes/login.tsx",
-    lineNumber: 124,
+    lineNumber: 122,
+    columnNumber: 5
+  }, this);
+}
+
+// app/routes/home.tsx
+var home_exports = {};
+__export(home_exports, {
+  action: () => action3,
+  default: () => Home,
+  loader: () => loader4
+});
+var import_node5 = require("@remix-run/node");
+
+// app/utils/todo.server.ts
+async function createTodo(todo) {
+  let user = await prisma.user.findUnique({
+    where: {
+      email: "pubupcreed@gmail.com"
+    },
+    select: {
+      id: !0
+    }
+  });
+  await prisma.todo.create({
+    data: {
+      taskName: todo,
+      userId: user.id
+    }
+  });
+}
+
+// app/routes/home.tsx
+var import_jsx_dev_runtime6 = require("react/jsx-dev-runtime"), loader4 = async ({ request }) => (await requireUserId(request), null), action3 = async ({ request }) => {
+  let newTodo = (await request.formData()).get("todo");
+  return newTodo ? (await createTodo(newTodo), (0, import_node5.redirect)("/home")) : (0, import_node5.json)({ message: "Please provide a todo" }, { status: 400 });
+};
+function Home() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("div", { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("h2", { children: "Home Page" }, void 0, !1, {
+      fileName: "app/routes/home.tsx",
+      lineNumber: 32,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("div", { className: "text-center p-6 bg-gray-300", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("form", { action: "/logout", method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+        "button",
+        {
+          type: "submit",
+          className: "rounded-xl bg-yellow-300 font-semibold text-blue-600 px-3 py-2 transition duration-300 ease-in-out hover:bg-yellow-400 hover:-translate-y-1",
+          children: "Sign Out"
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/routes/home.tsx",
+          lineNumber: 35,
+          columnNumber: 11
+        },
+        this
+      ) }, void 0, !1, {
+        fileName: "app/routes/home.tsx",
+        lineNumber: 34,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("h2", { children: "new todo" }, void 0, !1, {
+        fileName: "app/routes/home.tsx",
+        lineNumber: 42,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("form", { method: "post", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("input", { type: "text", name: "todo" }, void 0, !1, {
+          fileName: "app/routes/home.tsx",
+          lineNumber: 44,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("button", { type: "submit", children: "Submit" }, void 0, !1, {
+          fileName: "app/routes/home.tsx",
+          lineNumber: 45,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/routes/home.tsx",
+        lineNumber: 43,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/routes/home.tsx",
+      lineNumber: 33,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/home.tsx",
+    lineNumber: 31,
     columnNumber: 5
   }, this);
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "00e91a48", entry: { module: "/build/entry.client-H63DSAEY.js", imports: ["/build/_shared/chunk-ZJL2GVLK.js", "/build/_shared/chunk-EETRBLDB.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-AYW4KZ3R.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-2VCRQ24T.js", imports: ["/build/_shared/chunk-44UU53BA.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-RBAVBNNA.js", imports: ["/build/_shared/chunk-44UU53BA.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-00E91A48.js" };
+var assets_manifest_default = { version: "5feaef62", entry: { module: "/build/entry.client-MBZSG4CZ.js", imports: ["/build/_shared/chunk-LNXYHGV2.js", "/build/_shared/chunk-VIPVJV6J.js", "/build/_shared/chunk-5KL4PAQL.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-LKLMPUA7.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/home": { id: "routes/home", parentId: "root", path: "home", index: void 0, caseSensitive: void 0, module: "/build/routes/home-JSWAUQAB.js", imports: ["/build/_shared/chunk-OZVJ2KGS.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-6NZLKEI5.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-OHGJSYZA.js", imports: ["/build/_shared/chunk-OZVJ2KGS.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-NVA4EOD7.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-5FEAEF62.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public/build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
@@ -610,6 +701,14 @@ var assetsBuildDirectory = "public/build", future = { unstable_cssModules: !1, u
     index: void 0,
     caseSensitive: void 0,
     module: root_exports
+  },
+  "routes/logout": {
+    id: "routes/logout",
+    parentId: "root",
+    path: "logout",
+    index: void 0,
+    caseSensitive: void 0,
+    module: logout_exports
   },
   "routes/index": {
     id: "routes/index",
@@ -626,6 +725,14 @@ var assetsBuildDirectory = "public/build", future = { unstable_cssModules: !1, u
     index: void 0,
     caseSensitive: void 0,
     module: login_exports
+  },
+  "routes/home": {
+    id: "routes/home",
+    parentId: "root",
+    path: "home",
+    index: void 0,
+    caseSensitive: void 0,
+    module: home_exports
   }
 };
 // Annotate the CommonJS export names for ESM import in node:
