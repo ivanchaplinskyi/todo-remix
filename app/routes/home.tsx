@@ -1,30 +1,14 @@
-import {
-  LoaderFunction,
-  json,
-  ActionFunction,
-  redirect,
-} from "@remix-run/node";
+import { LoaderFunction } from "@remix-run/node";
 import { requireUserId } from "~/utils/auth.server";
-import type { ActionArgs } from "@remix-run/node";
-import { createTodo } from "~/utils/todo.server";
-import { useActionData } from '@remix-run/react';
+import type { ActionArgs, ActionFunction } from "@remix-run/node";
+import { actionTodo, InputTodo } from "~/components/input-todo";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request }: ActionArgs) => {
   await requireUserId(request);
   return null;
 };
 
-export const action: ActionFunction = async ({ request }) => {
-  const form = await request.formData();
-  const newTodo = form.get("todo") as string | null;
-  if (!newTodo) {
-    return json({ message: "Please provide a todo" }, { status: 400 });
-  }
-
-  await createTodo(newTodo);
-  // await createTodo(newTodo, '64010964bb9740c54430b5e5');
-  return redirect(`/home`);
-};
+export const action: ActionFunction = actionTodo;
 
 export default function Home() {
   return (
@@ -40,10 +24,7 @@ export default function Home() {
           </button>
         </form>
         <h2>new todo</h2>
-        <form method="post">
-          <input type="text" name="todo" />
-          <button type="submit">Submit</button>
-        </form>
+        <InputTodo />
       </div>
     </div>
   );
