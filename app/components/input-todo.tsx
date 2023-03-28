@@ -4,6 +4,7 @@ import { createTodo } from "~/utils/todo.server";
 import { GetUserId } from "~/utils/types.server";
 import { getUser } from "~/utils/auth.server";
 import { useState } from "react";
+import { Form } from "@remix-run/react";
 
 export const actionTodo: ActionFunction = async ({ request }: ActionArgs) => {
   const form = await request.formData();
@@ -28,9 +29,9 @@ export function InputTodo() {
   const handleTodo = (event: React.ChangeEvent<HTMLInputElement>) => setTodo(event.target.value);
 
   return (
-    <form method="post">
+    <Form method="post"  action="/add-todo">
       <input type="text" name="todo" value={todo} onChange={handleTodo} />
       <button disabled={!todo} type="submit">Submit</button>
-    </form>
+    </Form>
   );
 }
